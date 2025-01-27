@@ -1,2 +1,16 @@
 # CIDM6330
 Repository for CIDM6330 
+
+## PROBLEM DESCRIPTION
+Industrial construction projects are incredibly large and complex undertakings, often involving hundred of millions of manhours, tens of millions of materials, and use supply chains that literally cover the globe. 
+Doing this complex work means that the team has to have a firm grasp of a tremendous number of variables. Among these are the path/sequence of construction, organizational constraints (like procurement processes), material availability, regulatory constraints, engineering data constraints, 
+labor constraints, and equipment constraints. Couple all of this with the need for safety, heavy lift, testing, permit to work, scaffolding, and subcontractor management and then take all of the data necessary to track and manage that and spread it across a hundred disparate systems. What you have is a recipe for chaos. 
+
+## DOMAIN 
+Industrial Construction including Engineering, Procurement, and Construction and the technical sub-disciplines of subcontract management, constraint management, materials management, scaffold management, permit to work management, safety management, commissioning and turnover management, and freight and logistics management.
+
+## PERSONAL INTEREST
+I have spent the past 20 years of my career working in this space and I've seen this problem manifest iteslf in dozens of ways over that time. My personal interest is to see companies in this space, who are dealing with billions of dollars, thousands of employees, and untold risk, have access to a tool that will provide early visibility into things that can go wrong, and improve the probability of a positive and profitable outcome. 
+
+## SYSTEM DESCRIPTION
+Since the scope and responsibility for each of these critical subdisciplines lies with the business unit or joint venture partner responsible for that scope, we cannot pretend to adopt a "one system to rule them all" architecture. Rather, we have to let accounting systems be responsible for accounting, materials management systems for materials management, document management systems be responsible for document management. What we need is a system that can take regular feeds from these systems and aggregate them into a single environment where data can be transformed and analyzed and a common and consistent reporting environment made available so that installation progress, 
