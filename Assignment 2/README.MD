@@ -1,10 +1,10 @@
 ![ERD](./cms_api/artifacts/CMS_ERD.png)
 [VIEW ERD PDF FILE](./cms_api/artifacts/CMS_ERD.pdf)
 
-[main.py](#mainpy)
-[model.py](#modelspy)
-[database.py](#databasepy)
-[requirements.txt](#requirementstxt)
+1 [main.py](#mainpy)
+2 [model.py](#modelspy)
+3 [database.py](#databasepy)
+4 [requirements.txt](#requirementstxt)
 
 #### `main.py`
 ```
