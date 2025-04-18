@@ -424,7 +424,7 @@ if __name__ == "__main__":
 4 [requirements.txt](#requirementstxt)
 
 #### `models.py`
-'''
+```
 from pydantic import BaseModel
 from uuid import UUID
 from datetime import date
@@ -511,7 +511,7 @@ class TimeReport(BaseModel):
     task: str
     hours: float
     effort_percentage: float
-'''
+```
 
 1 [main.py](#mainpy)
 2 [model.py](#modelspy)
@@ -519,7 +519,7 @@ class TimeReport(BaseModel):
 4 [requirements.txt](#requirementstxt)
 
 #### `database.py`
-'''
+```
 from sqlalchemy import create_engine, Column, String, Float, Integer, Date, Enum, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -631,7 +631,7 @@ def get_db():
         yield db
     finally:
         db.close()
-'''
+```
 
 1 [main.py](#mainpy)
 2 [model.py](#modelspy)
@@ -639,7 +639,7 @@ def get_db():
 4 [requirements.txt](#requirementstxt)
 
 #### `requirements.txt`
-'''
+```
 annotated-types==0.7.0
 anyio==4.9.0
 click==8.1.8
@@ -656,4 +656,4 @@ starlette==0.46.2
 typing-inspection==0.4.0
 typing_extensions==4.13.2
 uvicorn==0.34.1
-'''
+```
