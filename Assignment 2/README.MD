@@ -1,6 +1,12 @@
 ![ERD](./cms_api/artifacts/CMS_ERD.png)
 [VIEW ERD PDF FILE](./cms_api/artifacts/CMS_ERD.pdf)
 
+[main.py](#mainpy)
+[model.py](#modelspy)
+[database.py](#databasepy)
+[requirements.txt](#requirementstxt)
+
+#### `main.py`
 ```
 from fastapi import FastAPI, HTTPException, Depends
 from sqlalchemy.orm import Session
@@ -412,3 +418,228 @@ if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="127.0.0.1", port=8000)
 ```
+
+#### `models.py`
+'''
+from pydantic import BaseModel
+from uuid import UUID
+from datetime import date
+from enum import Enum
+from typing import Optional
+
+class Role(str, Enum):
+    FOREMAN = "Foreman"
+    GENERAL_FOREMAN = "GeneralForeman"
+    SUPERINTENDENT = "Superintendent"
+    WORKPLACE_PLANNER = "WorkplacePlanner"
+    MATERIAL_PLANNER = "MaterialPlanner"
+    CONSTRUCTION_MANAGER = "ConstructionManager"
+
+class ShipmentStatus(str, Enum):
+    IN_TRANSIT = "InTransit"
+    AT_PORT = "AtPort"
+    CUSTOMS = "Customs"
+    LAYDOWN = "Laydown"
+    AVAILABLE = "Available"
+
+class ScheduleStatusEnum(str, Enum):
+    AHEAD = "Ahead"
+    ON_SCHEDULE = "OnSchedule"
+    BEHIND = "Behind"
+
+class User(BaseModel):
+    user_id: UUID
+    username: str
+    role: Role
+
+class Crew(BaseModel):
+    crew_id: UUID
+    name: str
+    project_id: UUID
+
+class Project(BaseModel):
+    project_id: UUID
+    name: str
+    start_date: date
+    end_date: date
+
+class PerformanceMetric(BaseModel):
+    metric_id: UUID
+    crew_id: UUID
+    date: date
+    productivity: float
+    tasks_completed: int
+    tasks_total: int
+    hours_worked: float
+
+class Activity(BaseModel):
+    activity_id: UUID
+    project_id: UUID
+    description: str
+    constraint: str
+    start_date: date
+    end_date: date
+
+class Shipment(BaseModel):
+    shipment_id: UUID
+    project_id: UUID
+    location: str
+    contents: str
+    status: ShipmentStatus
+    arrival_date: date
+    customs_date: date
+    laydown_date: date
+    available_date: date
+
+class ScheduleStatus(BaseModel):
+    status_id: UUID
+    project_id: UUID
+    phase: str
+    status: ScheduleStatusEnum
+    last_updated: date
+
+class TimeReport(BaseModel):
+    report_id: UUID
+    crew_id: UUID
+    user_id: UUID
+    date: date
+    member_name: str
+    task: str
+    hours: float
+    effort_percentage: float
+'''
+
+#### `database.py`
+'''
+from sqlalchemy import create_engine, Column, String, Float, Integer, Date, Enum, ForeignKey
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+import enum
+
+# SQLite database
+DATABASE_URL = "sqlite:///cms.db"
+engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Base = declarative_base()
+
+# Enums
+class Role(enum.Enum):
+    FOREMAN = "Foreman"
+    GENERAL_FOREMAN = "GeneralForeman"
+    SUPERINTENDENT = "Superintendent"
+    WORKPLACE_PLANNER = "WorkplacePlanner"
+    MATERIAL_PLANNER = "MaterialPlanner"
+    CONSTRUCTION_MANAGER = "ConstructionManager"
+
+class ShipmentStatus(enum.Enum):
+    IN_TRANSIT = "InTransit"
+    AT_PORT = "AtPort"
+    CUSTOMS = "Customs"
+    LAYDOWN = "Laydown"
+    AVAILABLE = "Available"
+
+class ScheduleStatusEnum(enum.Enum):
+    AHEAD = "Ahead"
+    ON_SCHEDULE = "OnSchedule"
+    BEHIND = "Behind"
+
+# SQLAlchemy Models
+class User(Base):
+    __tablename__ = "users"
+    user_id = Column(String, primary_key=True)  # Store UUID as string
+    username = Column(String, nullable=False)
+    role = Column(Enum(Role, values_callable=lambda x: [e.value for e in x]), nullable=False)
+
+class Crew(Base):
+    __tablename__ = "crews"
+    crew_id = Column(String, primary_key=True)
+    name = Column(String, nullable=False)
+    project_id = Column(String, ForeignKey("projects.project_id"), nullable=False)
+
+class Project(Base):
+    __tablename__ = "projects"
+    project_id = Column(String, primary_key=True)
+    name = Column(String, nullable=False)
+    start_date = Column(Date, nullable=False)
+    end_date = Column(Date, nullable=False)
+
+class PerformanceMetric(Base):
+    __tablename__ = "metrics"
+    metric_id = Column(String, primary_key=True)
+    crew_id = Column(String, ForeignKey("crews.crew_id"), nullable=False)
+    date = Column(Date, nullable=False)
+    productivity = Column(Float, nullable=False)
+    tasks_completed = Column(Integer, nullable=False)
+    tasks_total = Column(Integer, nullable=False)
+    hours_worked = Column(Float, nullable=False)
+
+class Activity(Base):
+    __tablename__ = "activities"
+    activity_id = Column(String, primary_key=True)
+    project_id = Column(String, ForeignKey("projects.project_id"), nullable=False)
+    description = Column(String, nullable=False)
+    constraint = Column(String, nullable=False)
+    start_date = Column(Date, nullable=False)
+    end_date = Column(Date, nullable=False)
+
+class Shipment(Base):
+    __tablename__ = "shipments"
+    shipment_id = Column(String, primary_key=True)
+    project_id = Column(String, ForeignKey("projects.project_id"), nullable=False)
+    location = Column(String, nullable=False)
+    contents = Column(String, nullable=False)
+    status = Column(Enum(ShipmentStatus, values_callable=lambda x: [e.value for e in x]), nullable=False)
+    arrival_date = Column(Date, nullable=False)
+    customs_date = Column(Date, nullable=False)
+    laydown_date = Column(Date, nullable=False)
+    available_date = Column(Date, nullable=False)
+
+class ScheduleStatus(Base):
+    __tablename__ = "statuses"
+    status_id = Column(String, primary_key=True)
+    project_id = Column(String, ForeignKey("projects.project_id"), nullable=False)
+    phase = Column(String, nullable=False)
+    status = Column(Enum(ScheduleStatusEnum, values_callable=lambda x: [e.value for e in x]), nullable=False)
+    last_updated = Column(Date, nullable=False)
+
+class TimeReport(Base):
+    __tablename__ = "reports"
+    report_id = Column(String, primary_key=True)
+    crew_id = Column(String, ForeignKey("crews.crew_id"), nullable=False)
+    user_id = Column(String, ForeignKey("users.user_id"), nullable=False)
+    date = Column(Date, nullable=False)
+    member_name = Column(String, nullable=False)
+    task = Column(String, nullable=False)
+    hours = Column(Float, nullable=False)
+    effort_percentage = Column(Float, nullable=False)
+
+# Create tables
+Base.metadata.create_all(bind=engine)
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+'''
+
+#### `requirements.txt`
+'''
+annotated-types==0.7.0
+anyio==4.9.0
+click==8.1.8
+colorama==0.4.6
+fastapi==0.115.12
+greenlet==3.2.0
+h11==0.14.0
+idna==3.10
+pydantic==2.11.3
+pydantic_core==2.33.1
+sniffio==1.3.1
+SQLAlchemy==2.0.40
+starlette==0.46.2
+typing-inspection==0.4.0
+typing_extensions==4.13.2
+uvicorn==0.34.1
+'''
