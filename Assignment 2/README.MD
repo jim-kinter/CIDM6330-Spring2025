@@ -1,5 +1,5 @@
-![ERD](./artifacts/CMS_ERD.png)
-[VIEW ERD FILE](./artifacts/CMS_ERD.pdf)
+![ERD](./cms_api/artifacts/CMS_ERD.png)
+[VIEW ERD FILE](./cms_api/artifacts/artifacts/CMS_ERD.pdf)
 
 ```
 from fastapi import FastAPI, HTTPException, Depends
