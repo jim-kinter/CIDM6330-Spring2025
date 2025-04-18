@@ -497,7 +497,7 @@ This section describes the **system behaviors** of the **Construction Management
 - **Wireframe Alignment**: The Planning Overview wireframe includes a project dropdown, period filter, activities
 
 ### Feature: Crew Performance Monitoring
-![Crew Performance Monitoring](./artifacts/SEQUENCE_CrewPerformanceMonitoring)
+![Crew Performance Monitoring](./artifacts/SEQUENCE_CrewPerformanceMonitoring.png)
 
 ### Feature: Workface Planning
 ![Workface Planning](./artifacts/SEQUENCE_WorkfacePlanning.png)
