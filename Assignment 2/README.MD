@@ -418,6 +418,10 @@ if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="127.0.0.1", port=8000)
 ```
+1 [main.py](#mainpy)
+2 [model.py](#modelspy)
+3 [database.py](#databasepy)
+4 [requirements.txt](#requirementstxt)
 
 #### `models.py`
 '''
@@ -508,6 +512,11 @@ class TimeReport(BaseModel):
     hours: float
     effort_percentage: float
 '''
+
+1 [main.py](#mainpy)
+2 [model.py](#modelspy)
+3 [database.py](#databasepy)
+4 [requirements.txt](#requirementstxt)
 
 #### `database.py`
 '''
@@ -623,6 +632,11 @@ def get_db():
     finally:
         db.close()
 '''
+
+1 [main.py](#mainpy)
+2 [model.py](#modelspy)
+3 [database.py](#databasepy)
+4 [requirements.txt](#requirementstxt)
 
 #### `requirements.txt`
 '''
