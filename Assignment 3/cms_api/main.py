@@ -10,7 +10,7 @@ from repositories.in_memory_repo import InMemoryUserRepository, InMemoryCrewRepo
 from database import get_db
 
 app = FastAPI(title="Construction Management System API")
-repotype =  "CSV"                #"SQL" "CSV" or "MEM"
+repotype =  "SQL"                #"SQL" "CSV" or "MEM"
 
 # Dependencies for repositories
 def get_user_repository(db: Session = Depends(get_db)) -> UserRepository:
