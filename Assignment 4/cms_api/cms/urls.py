@@ -1,4 +1,5 @@
 from django.urls import path, include
+from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 from cms.apps.views import UserViewSet, CrewViewSet, ProjectViewSet, PerformanceMetricViewSet, ActivityViewSet, ShipmentViewSet, ScheduleStatusViewSet, TimeReportViewSet
 
@@ -14,5 +15,6 @@ router.register(r'reports', TimeReportViewSet, basename='report')
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('admin/', admin.site.urls),
     path('health/', lambda request: {'status': 'OK', 'message': 'API is running'}, name='health'),
 ]
