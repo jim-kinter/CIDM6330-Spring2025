@@ -1,9 +1,5 @@
-# CMS API README
+# CMS API Assignment 5 README
 
-The Construction Management System (CMS) API was initially built using FastAPI with a custom repository pattern supporting SQLModel, CSV, and In-Memory storage for entities: User, Crew, Project, PerformanceMetric, Activity, Shipment, ScheduleStatus, and TimeReport based upon the original system requirements. 
+The CMS API, initially developed in FastAPI with a custom repository pattern (SQLModel, CSV, In-Memory) for entities (User, Crew, Project, PerformanceMetric, Activity, Shipment, ScheduleStatus, TimeReport), was transitioned to Django REST Framework (DRF) with Django ORM. The project, moved from Assignment 4 to Assignment 5, uses SQLite (`cms.db`) for data storage, with models defined in `cms/apps/models.py`. Sample data from CSV files (`data/users.csv`, `crews.csv`, etc.) was migrated to `cms.db` using `load_csv.py`, ensuring referential integrity.
 
-I transitioned it to Django REST Framework (DRF) with Django ORM per the assignment, maintaining all CRUD endpoints and Foreman-only checks for TimeReport. The API now uses SQLite (`cms.db`) for data storage, replacing the repository pattern with Django ORM models defined in `cms/apps/models.py`. 
-
-Sample data from CSV files (`data/users.csv`, `crews.csv`, etc.) was migrated to `cms.db` using a `load_csv.py` script, ensuring referential integrity. 
-
-The Django admin UI at `http://localhost:8000/admin/` provides data management. The transition preserves functionality, with DRF endpoints tested at `http://localhost:8000/` and data verified via admin UI.
+The API supports CRUD endpoints (`users/`, `crews/`, etc.) with Foreman-only checks for TimeReport, accessible at `http://localhost:8000/`. Extended operations include performance report generation, user notifications (via Celery tasks), and project progress calculation. Celery, with Redis in Docker (`redis://localhost:6379/0`), handles asynchronous tasks, configured in `cms/celery.py`. Unit tests in `cms/apps/tests.py`, using Django's Unittest framework, validate these operations and passed successfully. The Django admin UI at `http://localhost:8000/admin/` provides data management. The project fulfills all requirements, including ORM, DRF, Celery/Redis integration, and testing.
