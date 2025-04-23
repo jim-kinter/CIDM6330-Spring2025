@@ -68,7 +68,16 @@ Use Cases detail key system interactions, specifying actors, preconditions, step
 - **Exceptions**:
   - If feedback is delayed, MMS escalates to Engineer.
   - If specifications are invalid, MMS prompts Engineer for corrections.
-- **UML Reference**: `artifacts/Activity_Diagram.png`, `artifacts/Sequence_Diagram.png`, `artifacts/Use_Case_Diagram.png`.
+- **UML Reference**:
+  - Activity Diagram:  
+    ![Activity Diagram](../artifacts/Activity_Diagram.png)  
+    [Link to Activity Diagram](../artifacts/Activity_Diagram.png)
+  - Sequence Diagram:  
+    ![Sequence Diagram](../artifacts/Sequence_Diagram.png)  
+    [Link to Sequence Diagram](../artifacts/Sequence_Diagram.png)
+  - Use Case Diagram:  
+    ![Use Case Diagram](../artifacts/Use_Case_Diagram.png)  
+    [Link to Use Case Diagram](../artifacts/Use_Case_Diagram.png)
 
 ### Use Case 2: Process Material Arrival and Inspection
 
@@ -86,7 +95,13 @@ Use Cases detail key system interactions, specifying actors, preconditions, step
 - **Exceptions**:
   - If inspection fails, MMS halts storage and escalates to Procurement.
   - If arrival data is incomplete, MMS prompts Warehouse for corrections.
-- **UML Reference**: `artifacts/State_Machine_Diagram.png`, `artifacts/Use_Case_Diagram.png`.
+- **UML Reference**:
+  - State Machine Diagram:  
+    ![State Machine Diagram](../artifacts/State_Machine_Diagram.png)  
+    [Link to State Machine Diagram](../artifacts/State_Machine_Diagram.png)
+  - Use Case Diagram:  
+    ![Use Case Diagram](../artifacts/Use_Case_Diagram.png)  
+    [Link to Use Case Diagram](../artifacts/Use_Case_Diagram.png)
 
 ### Use Case 3: Fabricate Widgets and Ship to Customer
 
@@ -105,18 +120,41 @@ Use Cases detail key system interactions, specifying actors, preconditions, step
 - **Exceptions**:
   - If quality check fails, MMS notifies Fabrication for rework.
   - If shipping is delayed, MMS escalates to Sales.
-- **UML Reference**: `artifacts/State_Machine_Diagram.png`, `artifacts/Use_Case_Diagram.png`.
+- **UML Reference**:
+  - State Machine Diagram:  
+    ![State Machine Diagram](../artifacts/State_Machine_Diagram.png)  
+    [Link to State Machine Diagram](../artifacts/State_Machine_Diagram.png)
+  - Use Case Diagram:  
+    ![Use Case Diagram](../artifacts/Use_Case_Diagram.png)  
+    [Link to Use Case Diagram](../artifacts/Use_Case_Diagram.png)
 
 ## UML Diagrams
 
-The MMS UML diagrams, rendered as PNG files from PlantUML at `https://plantuml.online`, are stored in the `artifacts` folder at the project root:
+The MMS UML diagrams, rendered as PNG files from PlantUML at `https://plantuml.online`, are stored in the `artifacts` folder at the project root. Below are the diagrams with inline images and links:
 
-- **Activity Diagram**: `artifacts/Activity_Diagram.png` (Use Case 1 process flow).
-- **Class Diagram**: `artifacts/Class_Diagram.png` (entities and relationships: Material, Requirement, Widget, etc.).
-- **Component Diagram**: `artifacts/Component_Diagram.png` (MMS architecture with Django, DRF, Celery, Redis in Docker).
-- **Sequence Diagram**: `artifacts/Sequence_Diagram.png` (Use Case 1 interactions).
-- **State Machine Diagram**: `artifacts/State_Machine_Diagram.png` (Material lifecycle).
-- **Use Case Diagram**: `artifacts/Use_Case_Diagram.png` (personas and Use Cases).
+- **Activity Diagram**:  
+  ![Activity Diagram](../artifacts/Activity_Diagram.png)  
+  [Link to Activity Diagram](../artifacts/Activity_Diagram.png)
+
+- **Class Diagram**:  
+  ![Class Diagram](../artifacts/Class_Diagram.png)  
+  [Link to Class Diagram](../artifacts/Class_Diagram.png)
+
+- **Component Diagram**:  
+  ![Component Diagram](../artifacts/Component_Diagram.png)  
+  [Link to Component Diagram](../artifacts/Component_Diagram.png)
+
+- **Sequence Diagram**:  
+  ![Sequence Diagram](../artifacts/Sequence_Diagram.png)  
+  [Link to Sequence Diagram](../artifacts/Sequence_Diagram.png)
+
+- **State Machine Diagram**:  
+  ![State Machine Diagram](../artifacts/State_Machine_Diagram.png)  
+  [Link to State Machine Diagram](../artifacts/State_Machine_Diagram.png)
+
+- **Use Case Diagram**:  
+  ![Use Case Diagram](../artifacts/Use_Case_Diagram.png)  
+  [Link to Use Case Diagram](../artifacts/Use_Case_Diagram.png)
 
 ## System Overview
 
