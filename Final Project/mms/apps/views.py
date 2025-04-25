@@ -1,3 +1,4 @@
+# mms/apps/views.py
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -19,7 +20,11 @@ class MaterialViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['post'])
     def arrival(self, request):
-        serializer = self.get_serializer(data=request.data)
+        # Map material_type to type for serializer compatibility
+        data = request.data.copy()  # Create a mutable copy of the request data
+        if 'material_type' in data:
+            data['type'] = data.pop('material_type')  # Rename material_type to type
+        serializer = self.get_serializer(data=data)
         if serializer.is_valid():
             serializer.save(status="Received")
             # Trigger Celery task for inspection
