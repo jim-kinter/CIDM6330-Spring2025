@@ -2,15 +2,15 @@
 
 ## Overview
 
-The Materials Management System (MMS) API, built with Django REST Framework (DRF), enables seamless management of material demand and tracking in industrial manufacturing. It supports daily material requirements from Engineering, installation requirements from Fabrication, and a feedback loop between Procurement and Engineering to finalize specifications. The API tracks materials from dock arrival to customer delivery, serving personas: Engineer, Fabrication, Procurement, Sales, Warehouse, Inventory, Shipping, Inspection, Preventative Maintenance, and Quality Control. Hosted at `http://localhost:8000/api/`, it uses Django ORM with SQLite (`Evolution_1/mms/mms.db`), Celery with Redis in Docker for asynchronous tasks, and DRF serializers for validation. This document defines CRUD and beyond-CRUD endpoints, along with an Entity-Relationship Diagram (ERD) for MMS entities, aligning with the Evolution 1 Class Diagram (`artifacts/Class_Diagram_r1.png`).
+The Materials Management System (MMS) API, built with Django REST Framework (DRF), enables seamless management of material demand and tracking in the context of industrial manufacturing. It supports daily material requirements from Engineering, installation requirements from Fabrication, and a feedback loop between Procurement and Engineering to finalize specifications. The API tracks materials from dock arrival to customer delivery, serving personas: Engineer, Fabrication, Procurement, Sales, Warehouse, Inventory, Shipping, Inspection, Preventative Maintenance, and Quality Control. Hosted at `http://localhost:8000/api/`, it uses Django ORM with SQLite (`Evolution_1/mms/mms.db`), Celery with Redis in Docker for asynchronous tasks, and DRF serializers for validation. This document defines CRUD and beyond CRUD endpoints, along with an Entity-Relationship Diagram (ERD) for MMS entities, aligning with the Evolution 1 Class Diagram requirement (`artifacts/Class_Diagram_r1.png`).
 
 ## API Endpoints
 
-The MMS API provides RESTful endpoints for CRUD operations on entities and beyond-CRUD operations for reports, notifications, and progress tracking. All endpoints are prefixed with `/api/` and require DRF token authentication for write operations. Responses use JSON, with standard HTTP status codes (e.g., 200 OK, 400 Bad Request, 404 Not Found).
+The MMS API provides RESTful endpoints for CRUD operations on entities and beyond CRUD operations for reports, notifications, and progress tracking. All endpoints are prefixed with `/api/` and require DRF token authentication for write operations. Responses use JSON, with standard HTTP status codes (e.g., 200 OK, 400 Bad Request, 404 Not Found).
 
 ### Entity: Material
 
-- **Description**: Represents raw materials (e.g., steel) tracked from arrival to issuance.
+- **Description**: Represents raw materials (e.g., steel, pipe, engineered equipment) tracked from arrival to issuance.
 - **Endpoints**:
   - `GET /api/materials/`: List all materials (filterable by `?status=Stored`).
     - Response: `[{"material_id": "uuid", "type": "steel", "quantity": 100, "status": "Stored", ...}, ...]`
@@ -150,6 +150,9 @@ The MMS API provides RESTful endpoints for CRUD operations on entities and beyon
 ## Entity-Relationship Diagram (ERD)
 
 The ERD defines MMS entities, their attributes, and relationships, aligned with Django ORM models in `Evolution_1/mms/apps/models.py`. It reflects the Evolution 1 Class Diagram (`artifacts/Class_Diagram_r1.png`), with fields and constraints for SQLite (`Evolution_1/mms/mms.db`).
+
+  ![Entity Relationship Diagram (ERD)](../artifacts/Entity_Relationship_Diagram_r1.png)  
+  [Link to Use ER Diagram](../artifacts/Entity_Relationship_Diagram_r1.png)
 
 ### Entities and Attributes
 
