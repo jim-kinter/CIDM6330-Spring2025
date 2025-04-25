@@ -1,4 +1,3 @@
-# mms/apps/admin.py
 from django.contrib import admin
 from .models import (
     Material, Requirement, InstallationRequirement, Widget, Shipment,
